@@ -85,15 +85,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1、文件和目录列表"><a href="#1、文件和目录列表" class="headerlink" title="1、文件和目录列表"></a>1、文件和目录列表</h2><h3 id="1-1基本列表功能"><a href="#1-1基本列表功能" class="headerlink" title="1.1基本列表功能"></a>1.1基本列表功能</h3><p><strong>ls</strong><br><strong>ls -F</strong> 区分文件和目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">**ls -a** 显示包括隐藏文件在内的所有文件</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**ls -FR** 递归选项</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**ls -l --time=atime test_one**  显示出已经更改过的文件访问时间。  </span><br><span class="line">**ls -i**  查看文件或目录的incode编号。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">### 1.2显示长列表</span><br><span class="line">**ls -l** 产生长列表格式的输出，包含了目录中每个文件的更多相关信息  </span><br><span class="line">* 文件类型，比如目录（d）、文件（-）、字符型文件（c）或块设备（b）；</span><br><span class="line">* 文件的权限；</span><br><span class="line">* 文件的硬链接总数；</span><br><span class="line">* 文件属主的用户名；</span><br><span class="line">* 文件属组的组名；</span><br><span class="line">*  文件的大小（以字节为单位）；</span><br><span class="line">* 文件上次修改时间；</span><br><span class="line">* 文件名或目录名</span><br><span class="line">### 1.3过滤输出列表</span><br><span class="line">ls命令能够识别标准通配符，并在过滤器中用它们进行模式匹配：</span><br><span class="line">* 问号（？）代表一个字符；</span><br><span class="line">* 型号（*）代表零个或多个字符。  </span><br><span class="line"></span><br><span class="line">在过滤器中使用星号和问号被称为**文件扩展匹配符**</span><br><span class="line"></span><br><span class="line">### 1.4 处理文件</span><br><span class="line">#### 1.4.1 创建文件</span><br><span class="line">**touch** 创建文件</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**改变文件的修改时间，同时并不需要改变文件的内容**</span><br><span class="line">#### 1.4.2 复制文件</span><br></pre></td></tr></table></figure>
+<p><strong>ls -a</strong> 显示包括隐藏文件在内的所有文件</p>
+<p><strong>ls -FR</strong> 递归选项</p>
+<p><strong>ls -l –time=atime test_one</strong>  显示出已经更改过的文件访问时间。<br><strong>ls -i</strong>  查看文件或目录的incode编号。</p>
+<h3 id="1-2显示长列表"><a href="#1-2显示长列表" class="headerlink" title="1.2显示长列表"></a>1.2显示长列表</h3><p><strong>ls -l</strong> 产生长列表格式的输出，包含了目录中每个文件的更多相关信息  </p>
+<ul>
+<li>文件类型，比如目录（d）、文件（-）、字符型文件（c）或块设备（b）；</li>
+<li>文件的权限；</li>
+<li>文件的硬链接总数；</li>
+<li>文件属主的用户名；</li>
+<li>文件属组的组名；</li>
+<li>文件的大小（以字节为单位）；</li>
+<li>文件上次修改时间；</li>
+<li>文件名或目录名<h3 id="1-3过滤输出列表"><a href="#1-3过滤输出列表" class="headerlink" title="1.3过滤输出列表"></a>1.3过滤输出列表</h3>ls命令能够识别标准通配符，并在过滤器中用它们进行模式匹配：</li>
+<li>问号（？）代表一个字符；</li>
+<li>型号（*）代表零个或多个字符。  </li>
+</ul>
+<p>在过滤器中使用星号和问号被称为<strong>文件扩展匹配符</strong></p>
+<h3 id="1-4-处理文件"><a href="#1-4-处理文件" class="headerlink" title="1.4 处理文件"></a>1.4 处理文件</h3><h4 id="1-4-1-创建文件"><a href="#1-4-1-创建文件" class="headerlink" title="1.4.1 创建文件"></a>1.4.1 创建文件</h4><p><strong>touch</strong> 创建文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">**改变文件的修改时间，同时并不需要改变文件的内容**</span><br><span class="line">#### 1.4.2 复制文件</span><br></pre></td></tr></table></figure>
 
 <p>cp source destination</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**cp** 复制文件  **-i** 强制shell询问是否需要覆盖已有文件。  </span><br><span class="line">**在复制单个文件时要在目录名尾部加上一个正斜线(/)**  </span><br><span class="line">#### 1.4.3 链接文件</span><br><span class="line">**ln**  命令，使用-s参数来区分创建硬链接还是软链接。   </span><br><span class="line">硬链接</span><br></pre></td></tr></table></figure>
@@ -124,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck1ur8iv500002stafhg3wfqd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck1urbkfl0002mktatcddn5hp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/08/hexo/" data-id="ck1hk4r41000090taga4i0tgg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/08/hexo/" data-id="ck1urbkfg0001mkta95t1tirt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/27/pool-blog/" data-id="ck1hk4r5l000290tax3pp46s6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/27/pool-blog/" data-id="ck1urbkhw0003mktaf8vcc5bg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -268,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/10/hello-world/" data-id="ck1hk4r4z000190ta4n4dsxf8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/10/hello-world/" data-id="ck1urbkf50000mktacq8bwnm2" class="article-share-link">Share</a>
       
       
     </footer>
