@@ -62,6 +62,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-shell-file" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/10/shell-file/" class="article-date">
+  <time datetime="2019-10-09T16:00:00.000Z" itemprop="datePublished">2019-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/10/shell-file/">Shell脚本--处理文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、文件和目录列表"><a href="#1、文件和目录列表" class="headerlink" title="1、文件和目录列表"></a>1、文件和目录列表</h2><h3 id="1-1基本列表功能"><a href="#1-1基本列表功能" class="headerlink" title="1.1基本列表功能"></a>1.1基本列表功能</h3><p><strong>ls</strong><br><strong>ls -F</strong> 区分文件和目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">**ls -a** 显示包括隐藏文件在内的所有文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**ls -FR** 递归选项</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**ls -l --time=atime test_one**  显示出已经更改过的文件访问时间。  </span><br><span class="line">**ls -i**  查看文件或目录的incode编号。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">### 1.2显示长列表</span><br><span class="line">**ls -l** 产生长列表格式的输出，包含了目录中每个文件的更多相关信息  </span><br><span class="line">* 文件类型，比如目录（d）、文件（-）、字符型文件（c）或块设备（b）；</span><br><span class="line">* 文件的权限；</span><br><span class="line">* 文件的硬链接总数；</span><br><span class="line">* 文件属主的用户名；</span><br><span class="line">* 文件属组的组名；</span><br><span class="line">*  文件的大小（以字节为单位）；</span><br><span class="line">* 文件上次修改时间；</span><br><span class="line">* 文件名或目录名</span><br><span class="line">### 1.3过滤输出列表</span><br><span class="line">ls命令能够识别标准通配符，并在过滤器中用它们进行模式匹配：</span><br><span class="line">* 问号（？）代表一个字符；</span><br><span class="line">* 型号（*）代表零个或多个字符。  </span><br><span class="line"></span><br><span class="line">在过滤器中使用星号和问号被称为**文件扩展匹配符**</span><br><span class="line"></span><br><span class="line">### 1.4 处理文件</span><br><span class="line">#### 1.4.1 创建文件</span><br><span class="line">**touch** 创建文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**改变文件的修改时间，同时并不需要改变文件的内容**</span><br><span class="line">#### 1.4.2 复制文件</span><br></pre></td></tr></table></figure>
+
+<p>cp source destination</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**cp** 复制文件  **-i** 强制shell询问是否需要覆盖已有文件。  </span><br><span class="line">**在复制单个文件时要在目录名尾部加上一个正斜线(/)**  </span><br><span class="line">#### 1.4.3 链接文件</span><br><span class="line">**ln**  命令，使用-s参数来区分创建硬链接还是软链接。   </span><br><span class="line">硬链接</span><br></pre></td></tr></table></figure>
+
+<p>ln code_file hl_code_file</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">软链接</span><br></pre></td></tr></table></figure>
+
+<p>ln -s code_file sl_code_file</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">* 符号链接  </span><br><span class="line">1、硬链接，以文件副本的形式存在，但不占用实际空间；  </span><br><span class="line">2、不允许给目录创建硬链接；  </span><br><span class="line">3、硬链接只有在同一个文件系统中才能创建；  </span><br><span class="line">4、删除其中一个硬链接文件并不影响其他有相同inode号的文件。  </span><br><span class="line">&amp;ensp; 硬链接可以防止数据误删，原因是只要文件的索引点还有一个以上的链接，只删除其中一个的链接并不</span><br><span class="line">影响索引节点本身和其他的链接，只有当最后一个链接别删除后，</span><br><span class="line">此时如果有新的数据要存储到磁盘上，被删除的文件的数据块及目录的链接才会被释放，</span><br><span class="line">空间被新数据暂用覆盖。</span><br><span class="line">* 硬链接  </span><br><span class="line">1、便于文件的管理，比如把一个复杂路径下的文件链接到一个简单路径下便于用户访问；  </span><br><span class="line">2、节省空间解决空间不足问题，某个文件文件系统已经用完了，但是现在必须在该文件系统下</span><br><span class="line">创建一个新的目录并存储大量的文件，那么可以把另一个剩余空间较多的文件系统中的目录链接到</span><br><span class="line">该文件系统中。  </span><br><span class="line">删除软链接并不影响被指向的文件，但若被指向的原文件被删除，则相关软链接就变成了死链接。</span><br><span class="line">#### 1.4.4 重命名文件</span><br><span class="line">**mv**  命令</span><br><span class="line">#### 1.4.5 删除文件</span><br></pre></td></tr></table></figure>
+
+<p>rm -i fall</p>
+<pre><code>-i参数提示是否真的要删除该文件。
+### 1.5 处理目录
+**mkdir** 创建目录  
+**rmdir** 删除空目录（只能删除空目录）  
+**rm -r** 递归删除目录及文件
+### 1.6 查看文件内容
+**file** 查看文件类型    
+**cat** 显示整个文件， -n参数会加上行号，-T可以不让制表符出现，但会用^I字符组合替换
+文中的所有制表符。  
+**more**  分页工具，可以通过空格键或回车键以逐行向前的方式浏览
+文本文件，浏览完成之后，按q键退出；  
+**less**  more的升级；  
+**查看部分文件**  
+**tail**  显示文件最后几行的内容，-n参数修改所显示的行数，
+-f允许在其他进程使用该文件时查看文件的内容，这是实时监测系统日志的绝妙方式。  
+**head** 显示文件开头那些行。</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck1ur8iv500002stafhg3wfqd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/08/hexo/" class="article-date">
@@ -235,6 +307,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/10/10/shell-file/">Shell脚本--处理文件</a>
+          </li>
         
           <li>
             <a href="/2019/10/08/hexo/">常用hexo命令</a>
