@@ -62,6 +62,185 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-shell_more" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/17/shell_more/" class="article-date">
+  <time datetime="2019-10-16T16:00:00.000Z" itemprop="datePublished">2019-10-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/17/shell_more/">更多的bash shell命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>管理进程 </li>
+<li>获取磁盘统计信息</li>
+<li>挂在新磁盘</li>
+<li>排序数据</li>
+<li>归档数据  <h2 id="1监测程序"><a href="#1监测程序" class="headerlink" title="1监测程序"></a>1监测程序</h2></li>
+<li><em>ps*</em> 进程监测，参数-l 产生一个长格式输出；  </li>
+<li><em>top*</em> 实时监测进程 ；  </li>
+<li><em>kill*</em> 结束进程，可以通过进程ID(PID)来结束进程，-s参数支持指定其他信号（用信号名或信号值）。例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -s HUP 3940</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>HUP</td>
+<td>挂起</td>
+</tr>
+<tr>
+<td>2</td>
+<td>INT</td>
+<td>中断</td>
+</tr>
+<tr>
+<td>3</td>
+<td>QUIT</td>
+<td>结束运行</td>
+</tr>
+<tr>
+<td>9</td>
+<td>KILL</td>
+<td>无条件终止</td>
+</tr>
+<tr>
+<td>11</td>
+<td>SEGV</td>
+<td>段错误</td>
+</tr>
+<tr>
+<td>15</td>
+<td>TERM</td>
+<td>尽可能终止</td>
+</tr>
+<tr>
+<td>17</td>
+<td>STOP</td>
+<td>无条件停止运行，但不终止</td>
+</tr>
+<tr>
+<td>18</td>
+<td>TSTP</td>
+<td>停止或暂停，但继续在后台运行</td>
+</tr>
+<tr>
+<td>19</td>
+<td>CONT</td>
+<td>在STOP或TSTP之后恢复执行</td>
+</tr>
+<tr>
+<td>## 2 监测磁盘空间</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>mount</strong> 挂载存储媒体，要手动在虚拟目录中挂载设备，需要 以root用户身份登录。基本命令:</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mount -t type device directory</span><br><span class="line">mount -t vfat /dev/sdb1 /media/disk</span><br></pre></td></tr></table></figure></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>umount</strong> 卸载设备，命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount [directory | device]</span><br></pre></td></tr></table></figure>
+
+<p>umount命令支持 通过设备文件或者 是挂载点来指定要卸载的设备。</p>
+<p><strong>df</strong> 命令，查看所有已挂载设备，参数-h,使用M来代替字节，G代替吉字节。<br><strong>du</strong> 命令，显示某个特定目录的磁盘使用情况。<strong>该命令可以用来快速判断系统上某个目录下是否有超大文件</strong>。<br>下面是能让du命令用起来更方便的几个命令行参数：</p>
+<ul>
+<li>-c：显示所有已列出文件总的大小；</li>
+<li>-h：按用户易读的格式输出大小，即用K替代千字节，用M替代兆字节，用G替代吉字节；  </li>
+<li>-s：显示每个输出参数的总计。<h2 id="3-处理文件数据"><a href="#3-处理文件数据" class="headerlink" title="3 处理文件数据"></a>3 处理文件数据</h2></li>
+<li><em>sort*</em> 排序数据，按照会话指定的默认语言的排序规则对文件中的数据行进行排序。<br>几个参数说明：</li>
+<li>-n 按照数值排序，该参数会将数字识别成数字而不是字符；</li>
+<li>-M 按月排序，Linux的日志文件经常会在每行的起始位置有一个时间戳，用来表明事件是什么时候发生的；</li>
+</ul>
+<p>-k和-t参数在对按字段分割的数据进行排序时非常有用，例如/etc/passwd文件，可以用-t参数来指定<br>字段分隔符，然后用-k参数来指定排序的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort -t &apos;:&apos; -k 3 -n /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>-n参数在排序数值时非常有用，比如du命令的输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh * | sort -nr</span><br></pre></td></tr></table></figure>
+
+<p><strong>grep</strong>搜索数据，会在输入或指定的文件中查找匹配特定模式的字符的行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep [options] pattern [file]</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+
+<p>-v参数，反向搜索（输出不匹配该模式的行），<br>几个参数：</p>
+<ul>
+<li>-v 反向搜索，输出不匹配该模式的行；</li>
+<li>-n 显示匹配模式的行所在的行号</li>
+<li>-c 知道多少行含有匹配的模式；</li>
+<li>-e 多个匹配模式，使用-e来指定。<h2 id="4-压缩数据"><a href="#4-压缩数据" class="headerlink" title="4 压缩数据"></a>4 压缩数据</h2></li>
+<li><em>gzip*</em> :用来压缩文件；  </li>
+<li><em>gzcat*</em>：用来查看压缩过的文本文件的内容；  </li>
+<li><em>gunzip*</em>：用来解压文件。<h3 id="归档数据"><a href="#归档数据" class="headerlink" title="归档数据"></a>归档数据</h3></li>
+<li><em>tar*</em>命令，命令格式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar function [options] object1 object2 ...</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>命令参数：</p>
+<ul>
+<li>-c 创建一个新的tar归档文件；</li>
+<li>-r 追加文件到已有tar归档文件末尾；</li>
+<li>-t 列出已有tar归档文件的内容；</li>
+<li>-u 将比tar归档文件中已有的同名文件新的文件追加到该tar归档文件中；</li>
+<li>-x 从已有tar文件中提取文件。   </li>
+</ul>
+<p>每个功能可用选项来针对tar归档文件定义一个特定行为。</p>
+<ul>
+<li>-C 切换到指定目录；</li>
+<li>-f 输出结果到文件或设备file；</li>
+<li>-j 将输出重定向给bzip2命令来压缩内容；</li>
+<li>-p 保留所有文件的权限；</li>
+<li>-v 在处理文件时显示文件；</li>
+<li>-z 将输出重定向给gzip命令来压缩内容。</li>
+</ul>
+<p>建立一个归档文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf test.tar test/ test2/</span><br></pre></td></tr></table></figure>
+
+<p>显示归档文件的内容，但不提取文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -tf test.tar</span><br></pre></td></tr></table></figure>
+
+<p>提取文件test.tar中的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf test.tar</span><br></pre></td></tr></table></figure>
+
+<p><strong>敲门</strong> 下载了开源软件之后，你会经常看到文件名以.tgz结尾。这些是gzip压缩过的tar文件可以用<br>命令tar -zxvf filename.tgz来解压。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/17/shell_more/" data-id="ck1yst0hr0001g8tacr6xnsqh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-shell-file" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/10/shell-file/" class="article-date">
@@ -134,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck1urlft90002cotabrihun37" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck1yst0hu0002g8tad3cfujbm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/08/hexo/" data-id="ck1urlfsy0001cota5trgbzs0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/08/hexo/" data-id="ck1yst0hf0000g8ta9ensksh0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -229,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/27/pool-blog/" data-id="ck1urlfwg0003cotazb7uo5qy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/27/pool-blog/" data-id="ck1yst0jt0004g8tam7xzjfsy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/10/hello-world/" data-id="ck1urlfsg0000cotau4tzkvs0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/10/hello-world/" data-id="ck1yst0hx0003g8tahbin97uu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -317,6 +496,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/10/17/shell_more/">更多的bash shell命令</a>
+          </li>
         
           <li>
             <a href="/2019/10/10/shell-file/">Shell脚本--处理文件</a>
