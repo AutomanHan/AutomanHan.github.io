@@ -113,7 +113,53 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/26/shell-input/" data-id="ck27fvl5k00023cta08hyw9j0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/26/shell-input/" data-id="ck27g3d4u0005uwta5us2c886" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-if-then" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/22/if-then/" class="article-date">
+  <time datetime="2019-10-21T16:00:00.000Z" itemprop="datePublished">2019-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/22/if-then/">使用结构化命令-- if-then语句和case语句</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-使用if-then语句"><a href="#1-使用if-then语句" class="headerlink" title="1 使用if-then语句"></a>1 使用if-then语句</h2><p>if-then语句格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if command</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>如果command命令的退出状态码是0(该命令成功运行)，位于then部分的命令就会被执行，如果该命令<br>的退出状态码是其他值，then部分的命令就不会执行，bash shell会继续执行脚本中的下一个命令。<br>fi语句用来表示if-then语句到此结束。  </p>
+<h2 id="2-if-then-else语句"><a href="#2-if-then-else语句" class="headerlink" title="2 if-then-else语句"></a>2 if-then-else语句</h2><p>if-then-else语句格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if command</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">else</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-嵌套if"><a href="#3-嵌套if" class="headerlink" title="3 嵌套if"></a>3 嵌套if</h2><p>检查/etc/passwd文件中是否存在<strong>某个用户</strong>以及该用户的<strong>目录</strong>是否尚在。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/22/if-then/" data-id="ck27g3d4o0002uwtalxbwhnss" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,53 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/22/shell-ifthen-test/" data-id="ck27fvl5u00043ctaendl7j8o" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-if-then" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/22/if-then/" class="article-date">
-  <time datetime="2019-10-21T16:00:00.000Z" itemprop="datePublished">2019-10-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/22/if-then/">使用结构化命令-- if-then语句和case语句</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-使用if-then语句"><a href="#1-使用if-then语句" class="headerlink" title="1 使用if-then语句"></a>1 使用if-then语句</h2><p>if-then语句格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if command</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-
-<p>如果command命令的退出状态码是0(该命令成功运行)，位于then部分的命令就会被执行，如果该命令<br>的退出状态码是其他值，then部分的命令就不会执行，bash shell会继续执行脚本中的下一个命令。<br>fi语句用来表示if-then语句到此结束。  </p>
-<h2 id="2-if-then-else语句"><a href="#2-if-then-else语句" class="headerlink" title="2 if-then-else语句"></a>2 if-then-else语句</h2><p>if-then-else语句格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if command</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">else</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-嵌套if"><a href="#3-嵌套if" class="headerlink" title="3 嵌套if"></a>3 嵌套if</h2><p>检查/etc/passwd文件中是否存在<strong>某个用户</strong>以及该用户的<strong>目录</strong>是否尚在。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/22/if-then/" data-id="ck27fvl6900063cta2rdn0a3h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/22/shell-ifthen-test/" data-id="ck27g3d4s0004uwta37qec8bw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -414,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/17/shell_more/" data-id="ck27fvl5p00033ctart28df4j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/17/shell_more/" data-id="ck27g3d4w0006uwtarv5qn89t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/base/">base</a></li></ul>
@@ -495,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck27fvl6e00073ctai4qtxpgy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck27g3d4q0003uwtammku8qyk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -542,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/08/hexo/" data-id="ck27fvl5e00013cta4uphwj76" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/08/hexo/" data-id="ck27g3d4k0001uwta39yfcqaw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -590,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/27/pool-blog/" data-id="ck27fvl8n00093ctai8bdo7kl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/27/pool-blog/" data-id="ck27g3d6o0009uwtav7odndvc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -639,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/10/hello-world/" data-id="ck27fvl5000003cta0g3y57wk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/10/hello-world/" data-id="ck27g3d4c0000uwtaww2v4p0j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -698,11 +698,11 @@
           </li>
         
           <li>
-            <a href="/2019/10/22/shell-ifthen-test/">使用结构化命令-- if-then语句之test命令</a>
+            <a href="/2019/10/22/if-then/">使用结构化命令-- if-then语句和case语句</a>
           </li>
         
           <li>
-            <a href="/2019/10/22/if-then/">使用结构化命令-- if-then语句和case语句</a>
+            <a href="/2019/10/22/shell-ifthen-test/">使用结构化命令-- if-then语句之test命令</a>
           </li>
         
           <li>
