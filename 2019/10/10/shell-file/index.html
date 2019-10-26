@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1、文件和目录列表1.1基本列表功能lsls -F 区分文件和目录 ls -a 显示包括隐藏文件在内的所有文件 ls -FR 递归选项 ls -l –time=atime test_one  显示出已经更改过的文件访问时间。ls -i  查看文件或目录的incode编号。 1.2显示长列表ls -l 产生长列表格式的输出，包含了目录中每个文件的更多相关信息    文件类型，比如目录（d）、文件（-">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-26T01:36:55.165Z">
+<meta property="og:updated_time" content="2019-10-26T14:09:12.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell脚本--处理文件">
 <meta name="twitter:description" content="1、文件和目录列表1.1基本列表功能lsls -F 区分文件和目录 ls -a 显示包括隐藏文件在内的所有文件 ls -FR 递归选项 ls -l –time=atime test_one  显示出已经更改过的文件访问时间。ls -i  查看文件或目录的incode编号。 1.2显示长列表ls -l 产生长列表格式的输出，包含了目录中每个文件的更多相关信息    文件类型，比如目录（d）、文件（-">
@@ -105,7 +105,8 @@
 </ul>
 <p>在过滤器中使用星号和问号被称为<strong>文件扩展匹配符</strong></p>
 <h3 id="1-4-处理文件"><a href="#1-4-处理文件" class="headerlink" title="1.4 处理文件"></a>1.4 处理文件</h3><h4 id="1-4-1-创建文件"><a href="#1-4-1-创建文件" class="headerlink" title="1.4.1 创建文件"></a>1.4.1 创建文件</h4><p><strong>touch</strong> 创建文件<br><strong>改变文件的修改时间，同时并不需要改变文件的内容</strong></p>
-<h4 id="1-4-2-复制文件"><a href="#1-4-2-复制文件" class="headerlink" title="1.4.2 复制文件"></a>1.4.2 复制文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cp source destination</span><br><span class="line">``` </span><br><span class="line">**cp** 复制文件  **-i** 强制shell询问是否需要覆盖已有文件。  </span><br><span class="line">**在复制单个文件时要在目录名尾部加上一个正斜线(/)**  </span><br><span class="line">#### 1.4.3 链接文件</span><br><span class="line">**ln**  命令，使用-s参数来区分创建硬链接还是软链接。   </span><br><span class="line">硬链接</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-2-复制文件"><a href="#1-4-2-复制文件" class="headerlink" title="1.4.2 复制文件"></a>1.4.2 复制文件</h4><p>命令格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cp source destination</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">**cp** 复制文件  **-i** 强制shell询问是否需要覆盖已有文件。  </span><br><span class="line">**在复制单个文件时要在目录名尾部加上一个正斜线(/)**  </span><br><span class="line">#### 1.4.3 链接文件</span><br><span class="line">**ln**  命令，使用-s参数来区分创建硬链接还是软链接。   </span><br><span class="line">硬链接</span><br></pre></td></tr></table></figure>
 
 <p>ln code_file hl_code_file</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">软链接</span><br></pre></td></tr></table></figure>
@@ -133,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck27n2cg800031ctalk89guwb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck27n53yw0002f8ta640c6et0" class="article-share-link">Share</a>
       
       
     </footer>
