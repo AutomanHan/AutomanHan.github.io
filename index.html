@@ -62,6 +62,139 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-if-then" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/22/if-then/" class="article-date">
+  <time datetime="2019-10-21T16:00:00.000Z" itemprop="datePublished">2019-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/22/if-then/">使用结构化命令-- if-then语句和case语句</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-使用if-then语句"><a href="#1-使用if-then语句" class="headerlink" title="1 使用if-then语句"></a>1 使用if-then语句</h2><p>if-then语句格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if command</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>如果command命令的退出状态码是0(该命令成功运行)，位于then部分的命令就会被执行，如果该命令<br>的退出状态码是其他值，then部分的命令就不会执行，bash shell会继续执行脚本中的下一个命令。<br>fi语句用来表示if-then语句到此结束。  </p>
+<h2 id="2-if-then-else语句"><a href="#2-if-then-else语句" class="headerlink" title="2 if-then-else语句"></a>2 if-then-else语句</h2><p>if-then-else语句格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if command</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">else</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-嵌套if"><a href="#3-嵌套if" class="headerlink" title="3 嵌套if"></a>3 嵌套if</h2><p>检查/etc/passwd文件中是否存在<strong>某个用户</strong>以及该用户的<strong>目录</strong>是否尚在。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/22/if-then/" data-id="ck26wase200012otax0jhic24" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-shell-ifthen-test" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/22/shell-ifthen-test/" class="article-date">
+  <time datetime="2019-10-21T16:00:00.000Z" itemprop="datePublished">2019-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/22/shell-ifthen-test/">使用结构化命令-- if-then语句之test命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>到目前为止，在if语句中看到的都是普通shell命令；<strong>if-then语句不能测试命令退出状态码之外的条件</strong>。<br>test命令提供了在if-then语句中测试不同条件的途径。如果test命令中列出的条件成立，test命令就会退出并<br>返回退出状态码0。如果条件不成立，test命令就会退出并返回非零的状态码，这使得if-then语句不会再被执<br>行。<br>test命令的格式非常简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test condition</span><br></pre></td></tr></table></figure>
+
+<p>condition是test命令要测试的一系列参数和值。当用在if-then语句中时，test命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if test condition</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>如果不写test命令的condition部分，它会以非零的退出状态码退出，并执行else语句块。<br>bash shell提供了另外一种条件测试方法，无需在if-then语句中声明test命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if [ condition ]</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>方括号定义了测试条件。注意，第一个括号之后和第二个括号之前必须加上一个空格，否则就会报错。<br>test命令可以判断三类条件：</p>
+<ul>
+<li>数值比较 （bash shell只能处理整数）</li>
+<li>字符串比较</li>
+<li>文件比较</li>
+</ul>
+<h2 id="1-数值比较"><a href="#1-数值比较" class="headerlink" title="1 数值比较"></a>1 数值比较</h2><p>表 test命令的数值比较功能  </p>
+<table>
+<thead>
+<tr>
+<th>比较</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n1 -eq n2</td>
+<td>检查n1是否与n2相等</td>
+</tr>
+<tr>
+<td>n1 -ge n2</td>
+<td>检查n1是否大于或等于n2</td>
+</tr>
+<tr>
+<td>n1 -gt n2</td>
+<td>检查n1是否大于n2</td>
+</tr>
+<tr>
+<td>n1 -le n2</td>
+<td>检查n1是否小于或等于n2</td>
+</tr>
+<tr>
+<td>n1 -lt n2</td>
+<td>检查n1 是否小于n2</td>
+</tr>
+<tr>
+<td>n1 -ne n2</td>
+<td>检查n1是否不等于n2</td>
+</tr>
+</tbody></table>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-字符串比较"><a href="#2-字符串比较" class="headerlink" title="2 字符串比较"></a>2 字符串比较</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/22/shell-ifthen-test/" data-id="ck26wase800032otabygxeyvq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-shell_more" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/17/shell_more/" class="article-date">
@@ -220,9 +353,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/17/shell_more/" data-id="ck1yu0h2r0003i4tabe2vff7e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/17/shell_more/" data-id="ck26wasea00042ota220e2npp" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/base/">base</a></li></ul>
+
     </footer>
   </div>
   
@@ -270,11 +405,8 @@
 <li>型号（*）代表零个或多个字符。  </li>
 </ul>
 <p>在过滤器中使用星号和问号被称为<strong>文件扩展匹配符</strong></p>
-<h3 id="1-4-处理文件"><a href="#1-4-处理文件" class="headerlink" title="1.4 处理文件"></a>1.4 处理文件</h3><h4 id="1-4-1-创建文件"><a href="#1-4-1-创建文件" class="headerlink" title="1.4.1 创建文件"></a>1.4.1 创建文件</h4><p><strong>touch</strong> 创建文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">**改变文件的修改时间，同时并不需要改变文件的内容**</span><br><span class="line">#### 1.4.2 复制文件</span><br></pre></td></tr></table></figure>
-
-<p>cp source destination</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**cp** 复制文件  **-i** 强制shell询问是否需要覆盖已有文件。  </span><br><span class="line">**在复制单个文件时要在目录名尾部加上一个正斜线(/)**  </span><br><span class="line">#### 1.4.3 链接文件</span><br><span class="line">**ln**  命令，使用-s参数来区分创建硬链接还是软链接。   </span><br><span class="line">硬链接</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-处理文件"><a href="#1-4-处理文件" class="headerlink" title="1.4 处理文件"></a>1.4 处理文件</h3><h4 id="1-4-1-创建文件"><a href="#1-4-1-创建文件" class="headerlink" title="1.4.1 创建文件"></a>1.4.1 创建文件</h4><p><strong>touch</strong> 创建文件<br><strong>改变文件的修改时间，同时并不需要改变文件的内容</strong></p>
+<h4 id="1-4-2-复制文件"><a href="#1-4-2-复制文件" class="headerlink" title="1.4.2 复制文件"></a>1.4.2 复制文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cp source destination</span><br><span class="line">``` </span><br><span class="line">**cp** 复制文件  **-i** 强制shell询问是否需要覆盖已有文件。  </span><br><span class="line">**在复制单个文件时要在目录名尾部加上一个正斜线(/)**  </span><br><span class="line">#### 1.4.3 链接文件</span><br><span class="line">**ln**  命令，使用-s参数来区分创建硬链接还是软链接。   </span><br><span class="line">硬链接</span><br></pre></td></tr></table></figure>
 
 <p>ln code_file hl_code_file</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">软链接</span><br></pre></td></tr></table></figure>
@@ -302,7 +434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck1yu0h2o0002i4tajn3j3j0j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/10/shell-file/" data-id="ck26wase500022ota9gw4zx9z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -349,7 +481,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/08/hexo/" data-id="ck1yu0h280000i4tapfa01fbe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/08/hexo/" data-id="ck26wasdt00002otams4udtvu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -397,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/27/pool-blog/" data-id="ck1yu0h470004i4tael8xd7mk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/27/pool-blog/" data-id="ck26wasgb00082otaeoffix5i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -446,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/10/hello-world/" data-id="ck1yu0h2j0001i4ta88lpvpnu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/10/hello-world/" data-id="ck26wasec00052otaw8hdlibp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -466,9 +598,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/base/">base</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/base/" style="font-size: 10px;">base</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -487,6 +633,14 @@
       <ul>
         
           <li>
+            <a href="/2019/10/22/if-then/">使用结构化命令-- if-then语句和case语句</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/22/shell-ifthen-test/">使用结构化命令-- if-then语句之test命令</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/17/shell_more/">更多的bash shell命令</a>
           </li>
         
@@ -496,14 +650,6 @@
         
           <li>
             <a href="/2019/10/08/hexo/">常用hexo命令</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/27/pool-blog/">目标检测中ROI pooling， ROI Align， ROI warp，PSROI Pooling和PSROI-Align</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/10/hello-world/">Hello World</a>
           </li>
         
       </ul>
