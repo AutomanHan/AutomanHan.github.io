@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>处理用户输入 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="bash shell提供了一些不同的方法来从用户处获得数据，包括命令行参数、命令行选项以及直接从键盘读取输入的能力。 1 命令行参数 读取参数  bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数。 位置参数变量时标准的数字：$0是程序名，$1是第一个参数，$2是第二个参数，依次类推，直到第九个参数$9。 注意 每个参数都是用空格分隔，所以shell会将空格当成两个值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="处理用户输入">
+<meta property="og:url" content="http://yoursite.com/2019/10/26/shell-input/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="bash shell提供了一些不同的方法来从用户处获得数据，包括命令行参数、命令行选项以及直接从键盘读取输入的能力。 1 命令行参数 读取参数  bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数。 位置参数变量时标准的数字：$0是程序名，$1是第一个参数，$2是第二个参数，依次类推，直到第九个参数$9。 注意 每个参数都是用空格分隔，所以shell会将空格当成两个值">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-26T10:50:02.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="处理用户输入">
+<meta name="twitter:description" content="bash shell提供了一些不同的方法来从用户处获得数据，包括命令行参数、命令行选项以及直接从键盘读取输入的能力。 1 命令行参数 读取参数  bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数。 位置参数变量时标准的数字：$0是程序名，$1是第一个参数，$2是第二个参数，依次类推，直到第九个参数$9。 注意 每个参数都是用空格分隔，所以shell会将空格当成两个值">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-shell-input" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/26/shell-input/" class="article-date">
+  <time datetime="2019-10-25T16:00:00.000Z" itemprop="datePublished">2019-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      处理用户输入
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>bash shell提供了一些不同的方法来从用户处获得数据，包括命令行参数、命令行选项以及直接从键盘读取输入的能力。</p>
+<h2 id="1-命令行参数"><a href="#1-命令行参数" class="headerlink" title="1 命令行参数"></a>1 命令行参数</h2><p> <strong>读取参数</strong>  bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数。<br> 位置参数变量时标准的数字：$0是程序名，$1是第一个参数，$2是第二个参数，依次类推，直到第九个参数$9。<br> <strong>注意</strong> 每个参数都是用空格分隔，所以shell会将空格当成两个值的分隔符。要在参数值中包含空格，必须要用引号。  </p>
+<p> <strong>读取脚本命令</strong>  $0参数可以获取shell在命令行启动的脚本名，但该变量会包括该位置的所有内容。<strong>basename</strong><br> 命令会返回不包含路径的脚本名。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name=$&#123;$0&#125;</span><br></pre></td></tr></table></figure></p>
+<p> <strong>测试参数</strong> 在使用参数前一定要检查其中是否存在数据。-n可以完成。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ -n &quot;$1&quot;]</span><br><span class="line">then </span><br><span class="line">     echo Hello $1, glad to meet you.</span><br><span class="line">else</span><br><span class="line">    echo &quot; Sorry, you did not identify yourself. &quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-特殊参数变量"><a href="#2-特殊参数变量" class="headerlink" title="2  特殊参数变量"></a>2  特殊参数变量</h2><p><strong>参数统计</strong>  $#含有脚本运行时携带的命令行参数的个数。<br>获取命令行的最后一个参数：或者param=$#  $param。<br><strong>抓取所有的数据</strong>  $*和$@可以用来轻松访问所有的参数。区别在于</p>
+<ul>
+<li>$* 变量会将命令行上提供的所有参数当做一个单词保存；即将这些参数视为一个整体而不是多个个体；</li>
+<li>$@ 变量会将命令行上提供的所有参数当做同一个字符串中的多个独立的单词。这样就能够使用<strong>for</strong><br>命令来遍历所有的参数值。 </li>
+</ul>
+<h2 id="3-移动变量"><a href="#3-移动变量" class="headerlink" title="3 移动变量"></a>3 移动变量</h2><p>shift命令能够用来操作命令行参数，会根据他们的相对位置来移动命令行参数。<br>在使用shift命令时，默认情况下会将每个参数变量向左移动一个位置。所以，变量$3的值会移到$2中，<br>变量$2的值会移到$1中，变量$1的值则会被删除（注意，变量$0的值，也就是程序名，不会改变）。<br><strong>窍门</strong>  使用shift命令的时候要小心，如果某个参数被移出，他的值就被丢弃了，无法再恢复。</p>
+<h2 id="4-处理选项"><a href="#4-处理选项" class="headerlink" title="4 处理选项"></a>4 处理选项</h2><p><strong>查找选项</strong><br>1 处理简单选项<br>使用shift命令来依次处理脚本程序携带的命令行参数。在提取每个单独参数时，用case语句来判断某个参数<br>是否为选项。<br>2 分离参数和选项<br>Linux中处理这个问题的标准方法是用特殊字符来将两者分开，该字符会告诉脚本合适选项结束以及普通参数<br>何时开始。特殊字符一般是双破折线。<br>3 处理带值的选项<br><strong>使用getopt命令和getopts命令</strong></p>
+<h2 id="5-将选项标准化"><a href="#5-将选项标准化" class="headerlink" title="5 将选项标准化"></a>5 将选项标准化</h2><p>下表显示了Linux中用到的一些命令行选项的常用含义：<br>选项 | 描述<br>-|-<br>-a | 显示所有对象  |<br>-c | 生成一个计数 |<br>-d | 指定一个目录 |<br>-e | 扩展一个对象 |<br>-f | 指定读入数据的文件 |<br>-h | 显示命令的帮助信息 |<br>-i | 忽略文本大小写 |<br>-l | 产生输出的长格式版本 |<br>-n | 使用非交互模式（批处理）|<br>-o | 将所有输出重定向到指定的输出文件 |<br>-q | 以安静模式运行 |<br>-r | 递归的处理目录和文件 |<br>-s | 以安静模式运行 |<br>-v | 生成详细输出 |<br>-x | 排除某个对象 |<br>-y | 对所有问题回答yes |  </p>
+<h2 id="6-获得用户输入"><a href="#6-获得用户输入" class="headerlink" title="6 获得用户输入"></a>6 获得用户输入</h2><p><strong>基本的读取</strong>  read命令从标准输入或另一个文件描述符中接受输入。在收到输入后，read命令会将数据放入<br>一个变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo -n “Enter your name: ”</span><br><span class="line">read name</span><br></pre></td></tr></table></figure>
+
+<p>注意，生成提示的echo命令使用了-n选项，该选项不会在字符串末尾输出换行符，允许脚本用户紧跟其后输入<br>数据，而不是下一行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read -p &quot;Please enter your age: &quot;  age</span><br></pre></td></tr></table></figure>
+
+<p>-p选项允许直接在read命令行指定提示符。<br><strong>超时</strong><br>read命令会一直等待脚本用户输入。-t选项 可以指定一个计时器，指定了read命令等待输入的秒数。<br>当计时器过期后，read命令会返回一个非零退出状态码。然后 使用if-then或while来处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if read -t 5 -p &quot;Please enter your name: &quot; name</span><br><span class="line">then </span><br><span class="line">   echo &quot;Hello $name, welcome to my script.&quot;</span><br><span class="line">else  </span><br><span class="line">    echo </span><br><span class="line">	echo &quot;Sorry, too slow!&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p><strong>隐藏方式读取</strong><br>有时需要从脚本用户处得到输入，但又在屏幕上不显示输入信息。其中典型的例子就是输入的密码，<br>除此之外还有许多其他需要 隐藏的数据类型。<br>-s选项可以避免在read命令中输入的数据出现在 显示器上。（实际上，数据会被显示，只是read命令会将文本颜色设成跟背景色一样）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read -s -p &quot;Enter your password: &quot; pass</span><br></pre></td></tr></table></figure>
+
+<p><strong>从文件中读取</strong><br>也可以用read命令来读取Linux系统上文件里保存的数据。每次调用read命令，它都会从文件中读取一行文本。<br>当文件中再没有内容时，read命令会退出并返回非零退出状态码。<br>其中最难的部分是将文件中的数据传给read命令。最常见的方法是对文件使用cat命令，将结果通过管道直接<br>传给含有read命令的while命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">count=1</span><br><span class="line">cat test | while read line</span><br><span class="line">do </span><br><span class="line">    echo &quot;Line $count: $line&quot;</span><br><span class="line">	count=$&#123;$count + 1&#125;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/26/shell-input/" data-id="ck27fvl5k00023cta08hyw9j0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/22/shell-ifthen-test/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用结构化命令-- if-then语句之test命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/base/">base</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/base/" style="font-size: 10px;">base</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/26/shell-input/">处理用户输入</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/22/shell-ifthen-test/">使用结构化命令-- if-then语句之test命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/22/if-then/">使用结构化命令-- if-then语句和case语句</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/17/shell_more/">更多的bash shell命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/shell-file/">Shell脚本--处理文件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
