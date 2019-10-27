@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="本章内容  再探重定向 标准输入和输出 报告错误 丢弃数据 创建日志文件1 理解输入和输出 标准文件描述符*Linux系统将每个对象当做文件处理。这包括输入和输出进程。Linux用文件描述符来标识每个文件对象。文件描述符是一个非负整数，可以唯一标识会话中打开的文件。每个进程一次最多可以有九个文件描述符。出于特殊目的，bash shell保留了前三个文件描述符（0、1和2），见下表：       文">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-27T12:03:38.160Z">
+<meta property="og:updated_time" content="2019-10-27T12:05:27.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="呈现数据">
 <meta name="twitter:description" content="本章内容  再探重定向 标准输入和输出 报告错误 丢弃数据 创建日志文件1 理解输入和输出 标准文件描述符*Linux系统将每个对象当做文件处理。这包括输入和输出进程。Linux用文件描述符来标识每个文件对象。文件描述符是一个非负整数，可以唯一标识会话中打开的文件。每个进程一次最多可以有九个文件描述符。出于特殊目的，bash shell保留了前三个文件描述符（0、1和2），见下表：       文">
@@ -172,7 +172,7 @@
 <p>mktemp命令会用6个字符替换这6个X，从而保证文件名在目录中时唯一的。<br>同时，mktemp会返回文件名。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tempfile=$(mktemp test.XXXXXX)</span><br></pre></td></tr></table></figure>
 
-<p><strong>在/tmp目录创建临时文件</strong><br>-t选项会强制mktemp命令在系统的临时目录来创建该文件。<br><strong>创建临时目录</strong> -d选项告诉mktemp命令来 创建一个临时目录而不是临时文件。</p>
+<p><strong>在/tmp目录创建临时文件</strong><br>-t选项会强制mktemp命令在系统的临时目录来创建该文件。<br><strong>创建临时目录</strong> -d选项告诉mktemp命令来 创建一个临时目录而不是临时文件。-td就可以在/tmp目录中<br>创建临时目录。</p>
 <h2 id="8-记录消息"><a href="#8-记录消息" class="headerlink" title="8 记录消息"></a>8 记录消息</h2><p>将输出同时发送到显示器和日志文件。 tee命令，相当于管道的一个T型接头，它将从STDIN过来的数据同时发往<br>两处。一处是STDOUT，另一处是tee命令所指定的文件名。  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tee filename</span><br></pre></td></tr></table></figure>
 
@@ -184,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/27/shell-show/" data-id="ck27n53zf0005f8ta205h0c0e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/27/shell-show/" data-id="ck28y5l5d000698tawwevoddk" class="article-share-link">Share</a>
       
       
     </footer>
