@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="bash shell提供了一些不同的方法来从用户处获得数据，包括命令行参数、命令行选项以及直接从键盘读取输入的能力。 1 命令行参数 读取参数  bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数。 位置参数变量时标准的数字：$0是程序名，$1是第一个参数，$2是第二个参数，依次类推，直到第九个参数$9。 注意 每个参数都是用空格分隔，所以shell会将空格当成两个值">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-26T14:08:16.726Z">
+<meta property="og:updated_time" content="2019-10-26T14:19:55.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="处理用户输入">
 <meta name="twitter:description" content="bash shell提供了一些不同的方法来从用户处获得数据，包括命令行参数、命令行选项以及直接从键盘读取输入的能力。 1 命令行参数 读取参数  bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数。 位置参数变量时标准的数字：$0是程序名，$1是第一个参数，$2是第二个参数，依次类推，直到第九个参数$9。 注意 每个参数都是用空格分隔，所以shell会将空格当成两个值">
@@ -100,7 +100,79 @@
 </ul>
 <h2 id="3-移动变量"><a href="#3-移动变量" class="headerlink" title="3 移动变量"></a>3 移动变量</h2><p>shift命令能够用来操作命令行参数，会根据他们的相对位置来移动命令行参数。<br>在使用shift命令时，默认情况下会将每个参数变量向左移动一个位置。所以，变量$3的值会移到$2中，<br>变量$2的值会移到$1中，变量$1的值则会被删除（注意，变量$0的值，也就是程序名，不会改变）。<br><strong>窍门</strong>  使用shift命令的时候要小心，如果某个参数被移出，他的值就被丢弃了，无法再恢复。</p>
 <h2 id="4-处理选项"><a href="#4-处理选项" class="headerlink" title="4 处理选项"></a>4 处理选项</h2><p><strong>查找选项</strong><br>1 处理简单选项<br>使用shift命令来依次处理脚本程序携带的命令行参数。在提取每个单独参数时，用case语句来判断某个参数<br>是否为选项。<br>2 分离参数和选项<br>Linux中处理这个问题的标准方法是用特殊字符来将两者分开，该字符会告诉脚本合适选项结束以及普通参数<br>何时开始。特殊字符一般是双破折线。<br>3 处理带值的选项<br><strong>使用getopt命令和getopts命令</strong></p>
-<h2 id="5-将选项标准化"><a href="#5-将选项标准化" class="headerlink" title="5 将选项标准化"></a>5 将选项标准化</h2><p>下表显示了Linux中用到的一些命令行选项的常用含义：<br>选项 | 描述<br>-|-<br>-a | 显示所有对象  |<br>-c | 生成一个计数 |<br>-d | 指定一个目录 |<br>-e | 扩展一个对象 |<br>-f | 指定读入数据的文件 |<br>-h | 显示命令的帮助信息 |<br>-i | 忽略文本大小写 |<br>-l | 产生输出的长格式版本 |<br>-n | 使用非交互模式（批处理）|<br>-o | 将所有输出重定向到指定的输出文件 |<br>-q | 以安静模式运行 |<br>-r | 递归的处理目录和文件 |<br>-s | 以安静模式运行 |<br>-v | 生成详细输出 |<br>-x | 排除某个对象 |<br>-y | 对所有问题回答yes |  </p>
+<h2 id="5-将选项标准化"><a href="#5-将选项标准化" class="headerlink" title="5 将选项标准化"></a>5 将选项标准化</h2><p>下表显示了Linux中用到的一些命令行选项的常用含义： </p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>显示所有对象</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>生成一个计数</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>指定一个目录</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>扩展一个对象</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>指定读入数据的文件</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>显示命令的帮助信息</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>忽略文本大小写</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>产生输出的长格式版本</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>使用非交互模式（批处理）</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>将所有输出重定向到指定的输出文件</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>以安静模式运行</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>递归的处理目录和文件</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>以安静模式运行</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>生成详细输出</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>排除某个对象</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>对所有问题回答yes</td>
+</tr>
+</tbody></table>
 <h2 id="6-获得用户输入"><a href="#6-获得用户输入" class="headerlink" title="6 获得用户输入"></a>6 获得用户输入</h2><p><strong>基本的读取</strong>  read命令从标准输入或另一个文件描述符中接受输入。在收到输入后，read命令会将数据放入<br>一个变量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo -n “Enter your name: ”</span><br><span class="line">read name</span><br></pre></td></tr></table></figure>
 

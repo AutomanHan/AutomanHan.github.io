@@ -7,14 +7,17 @@
   
   <title>呈现数据 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="本章内容  再探重定向 标准输入和输出 报告错误 丢弃数据 创建日志文件1 理解输入和输出 标准文件描述符*Linux系统将每个对象当做文件处理。这包括输入和输出进程。Linux用文件描述符来标识每个文件对象。文件描述符是一个非负整数，可以唯一标识会话中打开的文件。每个进程一次最多可以有九个文件描述符。出于特殊目的，bash shell保留了前三个文件描述符（0、1和2），见下表：       文">
+<meta property="og:type" content="article">
 <meta property="og:title" content="呈现数据">
 <meta property="og:url" content="http://yoursite.com/2019/10/27/shell-show/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本章内容  再探重定向 标准输入和输出 报告错误 丢弃数据 创建日志文件1 理解输入和输出 标准文件描述符*Linux系统将每个对象当做文件处理。这包括输入和输出进程。Linux用文件描述符来标识每个文件对象。文件描述符是一个非负整数，可以唯一标识会话中打开的文件。每个进程一次最多可以有九个文件描述符。出于特殊目的，bash shell保留了前三个文件描述符（0、1和2），见下表：       文">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-26T12:29:08.597Z">
+<meta property="og:updated_time" content="2019-10-27T12:03:38.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="呈现数据">
+<meta name="twitter:description" content="本章内容  再探重定向 标准输入和输出 报告错误 丢弃数据 创建日志文件1 理解输入和输出 标准文件描述符*Linux系统将每个对象当做文件处理。这包括输入和输出进程。Linux用文件描述符来标识每个文件对象。文件描述符是一个非负整数，可以唯一标识会话中打开的文件。每个进程一次最多可以有九个文件描述符。出于特殊目的，bash shell保留了前三个文件描述符（0、1和2），见下表：       文">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -83,7 +86,101 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>本章内容</p>
+<ul>
+<li>再探重定向</li>
+<li>标准输入和输出</li>
+<li>报告错误</li>
+<li>丢弃数据</li>
+<li>创建日志文件<h2 id="1-理解输入和输出"><a href="#1-理解输入和输出" class="headerlink" title="1 理解输入和输出"></a>1 理解输入和输出</h2></li>
+<li><em>标准文件描述符*</em><br>Linux系统将每个对象当做<strong>文件处理</strong>。这包括输入和输出进程。Linux用<strong>文件描述符</strong>来标识每个文件对象。<br>文件描述符是一个<strong>非负整数</strong>，可以唯一标识会话中打开的文件。每个进程一次最多可以有九个文件描述符。<br>出于特殊目的，bash shell保留了前三个文件描述符（0、1和2），见下表：  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>文件描述符</th>
+<th>缩写</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>STDIN</td>
+<td>标准输入</td>
+</tr>
+<tr>
+<td>1</td>
+<td>STDOUT</td>
+<td>标准输出</td>
+</tr>
+<tr>
+<td>2</td>
+<td>STDERR</td>
+<td>标准错误</td>
+</tr>
+</tbody></table>
+<h2 id="2-在脚本中重定向输出"><a href="#2-在脚本中重定向输出" class="headerlink" title="2 在脚本中重定向输出"></a>2 在脚本中重定向输出</h2><p>可以在脚本中用STDOUT和STDERR文件描述符以在多个位置生成输出，只要简单地重定向相应的文件描述符就行。<br>有两种方法来在脚本中重定向输出：</p>
+<ul>
+<li>临时重定向行输出</li>
+<li>永久重定向脚本中的所有命令</li>
+<li><em>临时重定向*</em>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># testing STDERR messages</span><br><span class="line"></span><br><span class="line">echo &quot;This is an error&quot; &gt;&amp;2</span><br><span class="line">echo &quot;This is normal output&quot;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>如果像平常一样运行这个脚本，可能看不出什么区别。记住，默认情况下，Linux会将STDERR导向STDOUT。<br>但如果在运行脚本时重定向了STDERR，脚本中所有导向STDERR的文本都会被重定向。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./test 2&gt;test9</span><br></pre></td></tr></table></figure>
+
+<p><strong>永久重定向</strong><br>如果脚本中有大量数据需要 重定向，那重定向每个echo语句就会很繁琐。取而代之，可以用exec命令告诉<br>shell在脚本执行期间重定向某个特定文件描述符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec 1&gt;testout</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-在脚本中重定向输入"><a href="#3-在脚本中重定向输入" class="headerlink" title="3 在脚本中重定向输入"></a>3 在脚本中重定向输入</h2><p><strong>可用于从日志文件中读取数据并处理</strong><br>exec命令允许你将STDIN重定向到Linux系统上的文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec 0&lt; testfile</span><br></pre></td></tr></table></figure>
+
+<p>用法的实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># redirecting file input</span><br><span class="line"></span><br><span class="line">exec 0&lt; testfile</span><br><span class="line">count=1</span><br><span class="line"></span><br><span class="line">while read line</span><br><span class="line">do </span><br><span class="line">    echo &quot;Line #$count: $line&quot;</span><br><span class="line">	count=$[ $count + 1 ]</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>这是在脚本中从待处理的文件中读取数据的绝妙办法。Linux系统管理员的一项日常任务就是从日志文件中<br>读取数据并处理。这是完成该任务的最简单的办法。</p>
+<h2 id="4-创建自己的重定向"><a href="#4-创建自己的重定向" class="headerlink" title="4 创建自己的重定向"></a>4 创建自己的重定向</h2><p>在脚本中重定向输入和输出时，并不局限于这3个默认的文件描述符，其他6个3~8的文件描述符均可用作输入<br>或输出重定向。<br><strong>创建输出文件描述符</strong><br>除正常的输出外，可将特定信息重定向到文件中。同样适用exec命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exec 3&gt;testout</span><br><span class="line">echo &quot;This should display on the monitor&quot;</span><br><span class="line">echo &quot;and this should be stored in the file&quot; &gt;&amp;3</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以在显示器上保持正常的输出，而将特定信息重定向到文件中。<br><strong>重定向文件描述符</strong><br>临时重定向输出，然后恢复默认输出。方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">exec 3&gt;&amp;1</span><br><span class="line">exec 1&gt;testout</span><br><span class="line"></span><br><span class="line">echo &quot;This should store in the output file&quot;</span><br><span class="line"></span><br><span class="line">exec  1&gt;&amp;3</span><br></pre></td></tr></table></figure>
+
+<p>其实在修改重定向输出时，可以直接利用exec命令进行修改，但因为STDOUT指向的是屏幕这个标准输出，<br>是不知道这个文件描述符如何表述的，因此需要采用一个折中的办法来解决。<br><strong>创建输入文件描述符</strong><br>作用跟上借类似，只不过是临时从文件中输入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">exec 6&lt;&amp;0</span><br><span class="line"></span><br><span class="line">exec 0&lt; testfile</span><br><span class="line">...</span><br><span class="line">exec 0&lt;&amp;6</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建读写文件描述符</strong><br>可以打开某个文件描述符来作为输入和输出。可以用同一个文件描述符对同一个文件进行读写。<br>不过使用这种方法时，要特别小心，由于是对同一个文件进行数据读写，shell会维护一个内部指针，<br>指明在文件中的当前位置。任何读或写都会从文件指针上次的位置开始。<br><strong>关闭文件描述符</strong><br>如果你创建了新的输入或输出文件描述符，shell会在脚本退出时自动关闭他们。然而在有些情况下，需要 在<br>脚本结束前手动关闭文件描述符。要关闭文件描述符，将它重定向到特殊符号&amp;-。<br>在关闭文件描述符时还要注意另一件事。如果随后你在脚本中打开了同一个输出文件，shell会用一个新的<br>文件来替换已有的文件。这意味着如果你输出数据，它就会覆盖已有文件。<strong>关闭后再向同一文件输出会发生覆盖，<br>一直打开着就不会覆盖</strong></p>
+<h2 id="5-列出打开的文件描述符"><a href="#5-列出打开的文件描述符" class="headerlink" title="5 列出打开的文件描述符"></a>5 列出打开的文件描述符</h2><p>lsof命令会列出整个Linux系统打开的所有文件描述符。但在使用时，必须通过全路径名来引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/lsof</span><br></pre></td></tr></table></figure>
+
+<p>常用的参数包括-p和-d，前者允许指定进程ID，后者允许指定要显示的文件描述符编号。要想知道进程的当前<br>PID，可以用特殊环境变量$$(shell会将它设为当前PID)。-a选项用来对其他两个选项的结果执行布尔AND运算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/lsof -a -p $$ -d 0,1,2</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-阻止命令输出"><a href="#6-阻止命令输出" class="headerlink" title="6 阻止命令输出"></a>6 阻止命令输出</h2><p>作用</p>
+<ul>
+<li>避免出现错误信息，也无需保存；</li>
+<li>清除日志文件内容，但不删除文件。<br>要解决这个问题，可以将STDERR重定向到一个叫做<strong>null文件</strong>的特殊文件。shell输出到null文件的任何数据<br>都不会保存，全部都被丢掉了。在 Linux系统上null文件的标准位置是/dev/null。重定向到该位置的任何<br>数据都会被丢掉，不会显示。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al &gt; /dev/null</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>由于/dev/null文件不含有任何内容，程序员通常用它来快速清除现有文件中的数据，而不用先删除文件<br>再重建。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /dev/null &gt; testout</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-创建临时文件"><a href="#7-创建临时文件" class="headerlink" title="7 创建临时文件"></a>7 创建临时文件</h2><p>Linux系统有特殊的目录，专供临时文件使用。Linux使用/tmp目录来存放不需要永久保存的文件。大多数Linux<br>发行版配置了系统在启动时自动删除/tmp目录的所有文件。<br>mktemp命令可以在/tmp目录中创建一个唯一的临时文件。shell会创建这个文件，但不用默认的umask值。<br>它会将文件的读和写权限分配给文件的属主，并将你设为文件的属主。一旦创建了文件，你就在脚本中有了完整<br>的读写权限，但其他人没法访问它。<br><strong>创建本地临时文件</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mktemp testing.XXXXXX</span><br></pre></td></tr></table></figure>
+
+<p>mktemp命令会用6个字符替换这6个X，从而保证文件名在目录中时唯一的。<br>同时，mktemp会返回文件名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tempfile=$(mktemp test.XXXXXX)</span><br></pre></td></tr></table></figure>
+
+<p><strong>在/tmp目录创建临时文件</strong><br>-t选项会强制mktemp命令在系统的临时目录来创建该文件。<br><strong>创建临时目录</strong> -d选项告诉mktemp命令来 创建一个临时目录而不是临时文件。</p>
+<h2 id="8-记录消息"><a href="#8-记录消息" class="headerlink" title="8 记录消息"></a>8 记录消息</h2><p>将输出同时发送到显示器和日志文件。 tee命令，相当于管道的一个T型接头，它将从STDIN过来的数据同时发往<br>两处。一处是STDOUT，另一处是tee命令所指定的文件名。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tee filename</span><br></pre></td></tr></table></figure>
+
+<p>使用案例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data | tee testfile</span><br><span class="line">who | tee -a testfile</span><br></pre></td></tr></table></figure>
+
+<p>-a参数表明追加数据到文件中。</p>
+
       
     </div>
     <footer class="article-footer">
